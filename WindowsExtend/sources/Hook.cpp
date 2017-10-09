@@ -1,5 +1,7 @@
 #include <Windows.h>
 
+static POINT screenSize;
+
 static char	qwerty[2][26] =
 {
 	{
@@ -13,6 +15,18 @@ static char	qwerty[2][26] =
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M'
 	}
 };
+
+void setDesktopResolution(void)
+{
+	RECT desktop;
+
+	// Get a handle to the desktop window
+	const HWND hDesktop = GetDesktopWindow();
+	// Get the size of screen to the variable desktop
+	GetWindowRect(hDesktop, &desktop);
+	screenSize.x = desktop.right - 7;
+	screenSize.y = desktop.bottom - 7;
+}
 
 LRESULT CALLBACK KbProc(int code, WPARAM wp, LPARAM lp)
 {
@@ -39,6 +53,33 @@ LRESULT CALLBACK KbProc(int code, WPARAM wp, LPARAM lp)
 				return 1;
 			}
 		}
+	}
+	return CallNextHookEx(NULL, code, wp, lp);
+}
+
+LRESULT CALLBACK MsProc(int code, WPARAM wp, LPARAM lp)
+{
+	PMSLLHOOKSTRUCT	pmhs;
+	POINT p;
+	
+	if (code == HC_ACTION && wp == WM_MOUSEMOVE)
+	{
+		pmhs = (PMSLLHOOKSTRUCT)lp;
+
+		p = pmhs->pt;
+		if (pmhs->pt.x <= 5)
+			pmhs->pt.x = screenSize.x;
+		else if (pmhs->pt.x >= screenSize.x - 5)
+			pmhs->pt.x = 6;
+
+		if (pmhs->pt.y <= 5)
+			pmhs->pt.y = screenSize.y;
+		else if (pmhs->pt.y >= screenSize.y - 5)
+			pmhs->pt.y = 6;
+
+		SetCursorPos(pmhs->pt.x, pmhs->pt.y);
+		if (p.x != pmhs->pt.x || p.y != pmhs->pt.y)
+			return 1;
 	}
 	return CallNextHookEx(NULL, code, wp, lp);
 }
