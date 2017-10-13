@@ -1,5 +1,13 @@
 #include <Windows.h>
 
+typedef enum
+{
+	NONE = 0x00,
+	LOW,
+	HIGH
+} CrossedState;
+
+
 static POINT screenSize;
 
 static char	qwerty[2][26] =
@@ -20,12 +28,13 @@ void setDesktopResolution(void)
 {
 	RECT desktop;
 
-	// Get a handle to the desktop window
+	// Gettimg a handle to the desktop window
 	const HWND hDesktop = GetDesktopWindow();
-	// Get the size of screen to the variable desktop
+	
+	// Gettimg  the size of screen
 	GetWindowRect(hDesktop, &desktop);
-	screenSize.x = desktop.right - 7;
-	screenSize.y = desktop.bottom - 7;
+	screenSize.x = desktop.right - 3;
+	screenSize.y = desktop.bottom - 3;
 }
 
 LRESULT CALLBACK KbProc(int code, WPARAM wp, LPARAM lp)
@@ -60,6 +69,8 @@ LRESULT CALLBACK KbProc(int code, WPARAM wp, LPARAM lp)
 LRESULT CALLBACK MsProc(int code, WPARAM wp, LPARAM lp)
 {
 	PMSLLHOOKSTRUCT	pmhs;
+	static char XCrossed = NONE;
+	static char YCrossed = NONE;
 	POINT p;
 	
 	if (code == HC_ACTION && wp == WM_MOUSEMOVE)
@@ -67,15 +78,15 @@ LRESULT CALLBACK MsProc(int code, WPARAM wp, LPARAM lp)
 		pmhs = (PMSLLHOOKSTRUCT)lp;
 
 		p = pmhs->pt;
-		if (pmhs->pt.x <= 5)
+		if (pmhs->pt.x <= 2)
 			pmhs->pt.x = screenSize.x;
-		else if (pmhs->pt.x >= screenSize.x - 5)
-			pmhs->pt.x = 6;
+		else if (pmhs->pt.x >= screenSize.x)
+			pmhs->pt.x = 3;
 
-		if (pmhs->pt.y <= 5)
+		if (pmhs->pt.y <= 2)
 			pmhs->pt.y = screenSize.y;
-		else if (pmhs->pt.y >= screenSize.y - 5)
-			pmhs->pt.y = 6;
+		else if (pmhs->pt.y >= screenSize.y)
+			pmhs->pt.y = 3;
 
 		SetCursorPos(pmhs->pt.x, pmhs->pt.y);
 		if (p.x != pmhs->pt.x || p.y != pmhs->pt.y)

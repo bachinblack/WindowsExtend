@@ -149,10 +149,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sources\Exec.cpp" />
     <ClCompile Include="sources\Hook.cpp" />
     <ClCompile Include="sources\main.cpp" />
+    <ClCompile Include="sources\NotifIcon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Exec.hpp" />
     <ClInclude Include="include\WindowsExtend.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
