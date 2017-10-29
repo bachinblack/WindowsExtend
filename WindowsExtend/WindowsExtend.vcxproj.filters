@@ -27,12 +27,18 @@
     <ClCompile Include="sources\NotifIcon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\Data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\WindowsExtend.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Exec.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Data.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -149,12 +149,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sources\Data.cpp" />
     <ClCompile Include="sources\Exec.cpp" />
     <ClCompile Include="sources\Hook.cpp" />
     <ClCompile Include="sources\main.cpp" />
     <ClCompile Include="sources\NotifIcon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Data.hpp" />
     <ClInclude Include="include\Exec.hpp" />
     <ClInclude Include="include\WindowsExtend.hpp" />
   </ItemGroup>
