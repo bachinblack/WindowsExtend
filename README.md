@@ -1,7 +1,8 @@
 # WindowsExtend
 An application that brings together a lot of totally useless input modifications in Windows.
 
-The user interface is very simple and very eeasy to use, and it uses System Tray technology so that you can close the window and enjoy the features
+It's a System Tray application so the program keep running when the window is closed, and everything can be managed from the notify icon.
+The user interface is very simple and very easy to use.
 
 List of implemented or yet to implement features:
 
