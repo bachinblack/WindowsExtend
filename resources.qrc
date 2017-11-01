@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>resources/Luma.ico</file>
+        <file>resources/RedLuma.ico</file>
+    </qresource>
+</RCC>
