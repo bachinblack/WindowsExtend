@@ -8,8 +8,7 @@ enum EnActive
     CONV = 1,
     EXTS = 2,
     INVX = 3,
-    INVY = 4,
-    INVXY = 5
+    INVY = 4
 };
 
 class Input

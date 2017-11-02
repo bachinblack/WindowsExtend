@@ -89,23 +89,33 @@ bool Input::ExtendScreen(POINT& pos)
 
 void Input::InvertX(POINT& pos)
 {
-    static short last = 0;
+    static short last = -5000;
     short diff = pos.x - last;
 
-    last = last - diff;
-    if (last < 0)
-        last = screenSize.x + last;
+    if (last != -5000)
+        last = last - diff;
+    else
+        last = screenSize.x - pos.x;
+    if (last < 5)
+        last = 5;
+    if (last > screenSize.x - 2)
+        last = screenSize.x - 2;
     pos.x = last;
 }
 
 void Input::InvertY(POINT& pos)
 {
-    static short last = 0;
+    static short last = -5000;
     short diff = pos.y - last;
 
-    last = last - diff;
-    if (last < 0)
-        last = screenSize.y + last;
+    if (last != -5000)
+        last = last - diff;
+    else
+        last = screenSize.y - pos.y;
+    if (last < 5)
+        last = 5;
+    if (last > screenSize.y - 2)
+        last = screenSize.y - 2;
     pos.y = last;
 }
 
@@ -159,11 +169,5 @@ void Input::Enable(void)
 
 void setActive(const unsigned char& act, const bool isActive)
 {
-    if (act == EnActive::INVXY)
-    {
-        Active[INVX] = isActive;
-        Active[INVY] = isActive;
-    }
-    else
-        Active[act] = isActive;
+    Active[act] = isActive;
 }

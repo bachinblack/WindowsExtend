@@ -30,6 +30,7 @@ private:
 public slots:
     void clickInput(void);
     void clickShortcut(void);
+    void tryShow(const QSystemTrayIcon::ActivationReason &r);
 
     /* TrayIcon */
 private:

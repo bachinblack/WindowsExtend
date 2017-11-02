@@ -79,3 +79,4 @@ void Switch::enterEvent(QEvent *e) {
 QSize Switch::sizeHint() const {
     return QSize(2 * (_height + _margin), _height + 2 * _margin);
 }
+

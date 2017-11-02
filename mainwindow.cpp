@@ -29,7 +29,6 @@ void MainWindow::createUIInt(void)
     ui->sInf->setID(EnActive::EXTS);
     ui->sInvX->setID(EnActive::INVX);
     ui->sInvY->setID(EnActive::INVY);
-    ui->sInvY->setID(EnActive::INVXY);
     ui->bShortcut->setStyleSheet("background-color: #999999");
     ui->bInput->setStyleSheet("background-color: #CCCCCC");
     connect(ui->bInput, SIGNAL(released()),this, SLOT(clickInput()));
@@ -64,6 +63,20 @@ void MainWindow::createTrayIcon()
     trayIcon = new QSystemTrayIcon(this);
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->setIcon(QIcon(":/images/resources/Luma.ico"));
+
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(tryShow(QSystemTrayIcon::ActivationReason)));
+}
+
+void MainWindow::tryShow(const QSystemTrayIcon::ActivationReason& r)
+{
+    if (r == QSystemTrayIcon::Trigger)
+        {
+            if (!this->isVisible()) {
+                this->show();
+            } else {
+                this->hide();
+            }
+        }
 }
 
 /* Actions */
