@@ -1,5 +1,5 @@
 #include "inputs.h"
-#include <qDebug>
+#include <QDebug>
 
 static POINT screenSize;
 
@@ -66,49 +66,73 @@ LRESULT CALLBACK Input::KbProc(int code, WPARAM wp, LPARAM lp)
     return CallNextHookEx(NULL, code, wp, lp);
 }
 
-bool Input::ExtendScreen(const PMSLLHOOKSTRUCT& pmhs)
+bool Input::ExtendScreen(POINT& pos)
 {
     POINT           p;
 
-    p = pmhs->pt;
-    if (pmhs->pt.x <= 2)
-        pmhs->pt.x = screenSize.x;
-    else if (pmhs->pt.x >= screenSize.x)
-        pmhs->pt.x = 3;
+    p = pos;
+    if (pos.x <= 2)
+        pos.x = screenSize.x;
+    else if (pos.x >= screenSize.x)
+        pos.x = 3;
 
-    if (pmhs->pt.y <= 2)
-        pmhs->pt.y = screenSize.y;
-    else if (pmhs->pt.y >= screenSize.y)
-        pmhs->pt.y = 3;
+    if (pos.y <= 2)
+        pos.y = screenSize.y;
+    else if (pos.y >= screenSize.y)
+        pos.y = 3;
 
-    SetCursorPos(pmhs->pt.x, pmhs->pt.y);
-    if (p.x != pmhs->pt.x || p.y != pmhs->pt.y)
+    //SetCursorPos(pmhs->pt.x, pmhs->pt.y);
+    if (p.x != pos.x || p.y != pos.y)
         return true;
     return false;
 }
 
-void Input::InvertX(const PMSLLHOOKSTRUCT& pmhs)
+void Input::InvertX(POINT& pos)
 {
+    static short last = 0;
+    short diff = pos.x - last;
 
+    last = last - diff;
+    if (last < 0)
+        last = screenSize.x + last;
+    pos.x = last;
 }
 
-void Input::InvertY(const PMSLLHOOKSTRUCT& pmhs)
+void Input::InvertY(POINT& pos)
 {
+    static short last = 0;
+    short diff = pos.y - last;
 
+    last = last - diff;
+    if (last < 0)
+        last = screenSize.y + last;
+    pos.y = last;
 }
 
 LRESULT CALLBACK Input::MsProc(int code, WPARAM wp, LPARAM lp)
 {
     PMSLLHOOKSTRUCT	pmhs;
+    POINT           pos;
+    LRESULT         ret = CallNextHookEx(NULL, code, wp, lp);
 
-    if (Active[ALL]) { qDebug() << "disabled"; return CallNextHookEx(NULL, code, wp, lp); }
+    if (Active[ALL]) { qDebug() << "disabled"; return ret; }
     if (code == HC_ACTION && wp == WM_MOUSEMOVE)
     {
         pmhs = (PMSLLHOOKSTRUCT)lp;
-        if (Active[EXTS] && ExtendScreen(pmhs))
-            return 1;
+        pos = pmhs->pt;
+        if (Active[EXTS] && ExtendScreen(pos))
+            ret = 1;
+        if (Active[INVX] || Active[INVY]) {
+            InvertX(pos);
+            ret = 1;
+        } if (Active[INVY]) {
+            InvertY(pos);
+            ret = 1;
+        }
+        if (ret == 1)
+           SetCursorPos(pos.x, pos.y);
   }
-    return CallNextHookEx(NULL, code, wp, lp);
+    return ret;
 }
 
 void Input::setDesktopResolution(void)

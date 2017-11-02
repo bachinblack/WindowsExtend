@@ -31,9 +31,9 @@ private:
     static bool convertQA(const PKBDLLHOOKSTRUCT& p, bool& wasSent);
 
     /* Hooks subfunctions - mouse */
-    static bool ExtendScreen(const PMSLLHOOKSTRUCT& pmhs);
-    static void InvertX(const PMSLLHOOKSTRUCT& pmhs);
-    static void InvertY(const PMSLLHOOKSTRUCT& pmhs);
+    static bool ExtendScreen(POINT& pos);
+    static void InvertX(POINT& pos);
+    static void InvertY(POINT& pos);
 
 public:
     void Disable(void);

@@ -1,5 +1,4 @@
 #include "switch.h"
-#include <QDebug>
 
 Switch::Switch(QWidget *parent) : QAbstractButton(parent),
 _height(16),
