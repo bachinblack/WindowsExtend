@@ -17,7 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    // delete actions, trayIcon and everything
+    delete trayIcon;
+    delete trayIconMenu;
+    delete openAction;
+    delete disableAction;
+    delete quitAction;
 }
 
 /* UI */

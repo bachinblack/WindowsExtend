@@ -24,6 +24,7 @@ private:
 private:
     static LRESULT CALLBACK KbProc(int code, WPARAM wp, LPARAM lp);
     static LRESULT CALLBACK MsProc(int code, WPARAM wp, LPARAM lp);
+    bool   _disable;
 
 private:
     /* Hooks subfunctions - keyboard */

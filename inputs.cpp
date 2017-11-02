@@ -157,14 +157,20 @@ void Input::setDesktopResolution(void)
 
 void Input::Disable(void)
 {
-    UnhookWindowsHookEx(_kHook);
-    UnhookWindowsHookEx(_mHook);
+    if (!_disable) {
+        _disable = true;
+        UnhookWindowsHookEx(_kHook);
+        UnhookWindowsHookEx(_mHook);
+    }
 }
 
 void Input::Enable(void)
 {
-    _kHook = SetWindowsHookEx(WH_KEYBOARD_LL, KbProc, NULL, 0);
-    _mHook = SetWindowsHookEx(WH_MOUSE_LL, MsProc, NULL, 0);
+    if (_disable) {
+        _disable = false;
+        _kHook = SetWindowsHookEx(WH_KEYBOARD_LL, KbProc, NULL, 0);
+        _mHook = SetWindowsHookEx(WH_MOUSE_LL, MsProc, NULL, 0);
+    }
 }
 
 void setActive(const unsigned char& act, const bool isActive)

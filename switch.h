@@ -12,6 +12,7 @@ class Switch : public QAbstractButton {
 public:
     Switch(QWidget* parent = nullptr);
     Switch(const QBrush& brush, QWidget* parent = nullptr);
+    ~Switch();
 
     void  setID(const unsigned char& nID);
     QSize sizeHint() const override;

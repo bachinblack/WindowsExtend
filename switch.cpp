@@ -27,6 +27,8 @@ _anim(new QPropertyAnimation(this, "offset", this))
     setBrush(brush);
 }
 
+Switch::~Switch() { delete _anim; }
+
 void Switch::setID(const unsigned char& nID) { ID = nID; }
 
 void Switch::paintEvent(QPaintEvent *e) {
