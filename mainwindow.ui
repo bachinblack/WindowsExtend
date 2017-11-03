@@ -30,210 +30,254 @@
     <normaloff>:/images/resources/Luma.ico</normaloff>:/images/resources/Luma.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="Switch" name="sInf" native="true">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
-      <width>41</width>
-      <height>21</height>
+      <x>1</x>
+      <y>0</y>
+      <width>242</width>
+      <height>340</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLabel" name="lInf">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>80</y>
-      <width>81</width>
-      <height>16</height>
-     </rect>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
-    <property name="text">
-     <string>Infinite screen</string>
-    </property>
-   </widget>
-   <widget class="Switch" name="sInvX" native="true">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>120</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lInvX">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>120</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Invert X axis</string>
-    </property>
-   </widget>
-   <widget class="Switch" name="sInvY" native="true">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>160</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lInvY">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>160</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Invert Y axis</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="gbMs">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>191</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Mouse</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="gbKb">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>220</y>
-      <width>191</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Keyboard</string>
-    </property>
-    <widget class="QLabel" name="lKb">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>20</y>
-       <width>101</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>QWERTY keyboard</string>
-     </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>General</string>
+     </attribute>
+     <widget class="Switch" name="sSC" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>220</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="gbMs">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>0</y>
+        <width>191</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Mouse</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="gbKb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>170</y>
+        <width>191</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Keyboard</string>
+      </property>
+      <widget class="QLabel" name="lKb">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>20</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>QWERTY keyboard</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>50</y>
+         <width>51</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Shortcuts</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="Switch" name="sInvX" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>70</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lInvX">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>70</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Invert X axis</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lInvY">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>110</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Invert Y axis</string>
+      </property>
+     </widget>
+     <widget class="Switch" name="sInf" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lDis">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>260</y>
+        <width>41</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Disable</string>
+      </property>
+     </widget>
+     <widget class="Switch" name="sDis" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>260</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="Switch" name="sKb" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>190</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="Switch" name="sInvY" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>110</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lInf">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>30</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Infinite screen</string>
+      </property>
+     </widget>
+     <zorder>gbKb</zorder>
+     <zorder>sSC</zorder>
+     <zorder>gbMs</zorder>
+     <zorder>sInvX</zorder>
+     <zorder>lInvX</zorder>
+     <zorder>lInvY</zorder>
+     <zorder>sInf</zorder>
+     <zorder>lDis</zorder>
+     <zorder>sDis</zorder>
+     <zorder>sKb</zorder>
+     <zorder>sInvY</zorder>
+     <zorder>lInf</zorder>
     </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>50</y>
-       <width>51</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Shortcuts</string>
-     </property>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Shortcut</string>
+     </attribute>
+     <widget class="QLabel" name="lSC">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>20</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Active shortcuts</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="liSC">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>40</y>
+        <width>222</width>
+        <height>221</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bAdd">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>270</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bDel">
+      <property name="geometry">
+       <rect>
+        <x>118</x>
+        <y>270</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove</string>
+      </property>
+     </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="bInput">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>10</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Inputs</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bShortcut">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>10</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Shortcuts</string>
-    </property>
-   </widget>
-   <widget class="Switch" name="sDis" native="true">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>310</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lDis">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>310</y>
-      <width>41</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Disable</string>
-    </property>
-   </widget>
-   <widget class="Switch" name="sKb" native="true">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>240</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="Switch" name="sSC" native="true">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>270</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <zorder>gbMs</zorder>
-   <zorder>gbKb</zorder>
-   <zorder>sInf</zorder>
-   <zorder>lInf</zorder>
-   <zorder>sInvX</zorder>
-   <zorder>lInvX</zorder>
-   <zorder>sInvY</zorder>
-   <zorder>lInvY</zorder>
-   <zorder>bInput</zorder>
-   <zorder>bShortcut</zorder>
-   <zorder>sDis</zorder>
-   <zorder>lDis</zorder>
-   <zorder>sKb</zorder>
-   <zorder>sSC</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

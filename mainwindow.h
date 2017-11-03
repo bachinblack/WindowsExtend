@@ -46,6 +46,15 @@ private:
     QAction *disableAction;
     QAction *quitAction;
 
+    /* Toggle */
+private:
+    void showSC(void);
+    void showMain(void);
+
+    /* Shortcuts */
+private:
+    void setupShortcut(void);
+
 private slots:
     void showWindow(void);
     void Disable(void);

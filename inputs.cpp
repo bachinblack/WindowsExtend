@@ -3,7 +3,9 @@
 
 static POINT screenSize;
 
-static bool Active[6] = {false, false, false, false, false, true};
+static bool Active[6] = {false, false, false, false, false, false};
+
+Shortcut *Input::sc = new Shortcut;
 
 static unsigned char	qwerty[2][26] =
 {
@@ -19,9 +21,10 @@ static unsigned char	qwerty[2][26] =
     }
 };
 
-Input::Input(Shortcut *nsc)
+/* Initialization */
+
+Input::Input()
 {
-    sc = nsc;
     _disable = true;
     setDesktopResolution();
     Enable();
@@ -31,6 +34,10 @@ Input::~Input()
 {
     Disable();
 }
+
+Shortcut *Input::getSC(void) const { return sc; }
+
+/* Keyboard Hook Subfunctions */
 
 bool Input::convertQA(const PKBDLLHOOKSTRUCT& p, bool& wasSent)
 {
@@ -48,8 +55,7 @@ bool Input::convertQA(const PKBDLLHOOKSTRUCT& p, bool& wasSent)
 
 void Input::handleShortcuts(const DWORD& code, const WPARAM& wp)
 {
-    qDebug() << "handleShortcuts up!";
-    if (code == VK_SHIFT)
+    if (code == VK_LSHIFT || code == VK_RSHIFT)
     {
         if (wp == WM_KEYDOWN)
         {
@@ -59,6 +65,8 @@ void Input::handleShortcuts(const DWORD& code, const WPARAM& wp)
         //else
             //sc->addKey(-Mod::Shift);
     }
+    else if (wp == WM_KEYDOWN || wp == WM_SYSKEYDOWN)
+        sc->activateSC(code);
 }
 
 LRESULT CALLBACK Input::KbProc(int code, WPARAM wp, LPARAM lp)
@@ -67,7 +75,6 @@ LRESULT CALLBACK Input::KbProc(int code, WPARAM wp, LPARAM lp)
     PKBDLLHOOKSTRUCT	p = (PKBDLLHOOKSTRUCT)lp;
 
     if (Active[ALL]) { qDebug() << "failed"; return CallNextHookEx(NULL, code, wp, lp); }
-    qDebug() << "lolmdr";
     if (Active[SC] && (!Active[CONV] || wasSent))
         handleShortcuts(p->vkCode, wp);
     /* Getting only "down" events */
@@ -79,6 +86,8 @@ LRESULT CALLBACK Input::KbProc(int code, WPARAM wp, LPARAM lp)
     }
     return CallNextHookEx(NULL, code, wp, lp);
 }
+
+/* Mouse Hook Subfunctions */
 
 bool Input::ExtendScreen(POINT& pos)
 {
@@ -186,7 +195,4 @@ void Input::Enable(void)
     }
 }
 
-void setActive(const unsigned char& act, const bool isActive)
-{
-    Active[act] = isActive;
-}
+void setActive(const unsigned char& act, const bool isActive) { Active[act] = isActive; }

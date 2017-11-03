@@ -4,6 +4,12 @@
 #include <string>
 #include <unordered_map>
 #include <fstream>
+#include <Windows.h>
+#include <QMessageBox>
+#include <QDebug>
+#include <QStringListModel>
+
+bool createMessage(const char *title, const char *body);
 
 enum Mod
 {
@@ -35,10 +41,14 @@ class Shortcut
 public:
     Shortcut();
     void    addKey(const short& key);
+    void    activateSC(const short& key);
+    QStringListModel *getSCList(void);
 
 private:
     short   _pressed;
     void    loadSC(void);
-    void    saveSC(const SCPath *sc);
+    void    saveSC(SCPath *sc);
+    VOID    Exec(const std::string& path);
+    LPCWSTR stringToPath(const std::string& path);
     std::list<SCPath *>   shortcuts[8];
 };

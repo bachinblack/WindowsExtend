@@ -2,6 +2,16 @@
 #include <QMessageBox>
 #include "mainwindow.h"
 
+bool createMessage(const char *title, const char *body)
+{
+    QMessageBox msgBox;
+
+    (void)title;
+    msgBox.setText(body);
+    msgBox.exec();
+    return true;
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

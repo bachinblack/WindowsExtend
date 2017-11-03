@@ -16,11 +16,12 @@ enum EnActive
 class Input
 {
 public:
-    Input(Shortcut *nsc);
+    Input();
     ~Input();
+    Shortcut *getSC(void) const;
 
 private:
-    Shortcut        *sc;
+    static Shortcut *sc;
     HHOOK			_mHook;
     HHOOK			_kHook;
 

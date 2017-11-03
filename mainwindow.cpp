@@ -5,8 +5,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    sc = new Shortcut;
-    in = new Input(sc);
+    in = new Input();
+    sc = in->getSC();
     disabled = false;
     setWindowTitle(tr("WinEx settings"));
     createActions();
@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     trayIcon->show();
     ui->setupUi(this);
     createUIInt();
+    setupShortcut();
 }
 
 MainWindow::~MainWindow()
@@ -37,25 +38,8 @@ void MainWindow::createUIInt(void)
     ui->sInf->setID(EnActive::EXTS);
     ui->sInvX->setID(EnActive::INVX);
     ui->sInvY->setID(EnActive::INVY);
-    ui->bShortcut->setStyleSheet("background-color: #999999");
-    ui->bInput->setStyleSheet("background-color: #CCCCCC");
-    connect(ui->bInput, SIGNAL(released()),this, SLOT(clickInput()));
-    connect(ui->bShortcut, SIGNAL(released()),this, SLOT(clickShortcut()));
+    ui->sSC->setID(EnActive::SC);
     connect(ui->sDis, SIGNAL(released()),this, SLOT(Disable()));
-}
-
-/* UI Managment */
-
-void MainWindow::clickInput(void)
-{
-    ui->bShortcut->setStyleSheet("background-color: #999999");
-    ui->bInput->setStyleSheet("background-color: #CCCCCC");
-}
-
-void MainWindow::clickShortcut(void)
-{
-    ui->bShortcut->setStyleSheet("background-color: #CCCCCC");
-    ui->bInput->setStyleSheet("background-color: #999999");
 }
 
 /*   TrayIcon   */
@@ -117,6 +101,16 @@ void MainWindow::Disable(void)
         trayIcon->setIcon(QIcon(":/images/resources/Luma.ico"));
     }
     setActive(EnActive::ALL, disabled);
+}
+
+/* Shortcuts */
+
+void MainWindow::setupShortcut(void)
+{
+    QStringListModel *model = sc->getSCList();
+
+    ui->liSC->setModel(model);
+    //ui->bDel->setEnabled(false);
 }
 
 /* window handling */
