@@ -3,7 +3,7 @@
 
 static POINT screenSize;
 
-static bool Active[5] = {false, false, false, false, false};
+static bool Active[6] = {false, false, false, false, false, true};
 
 static unsigned char	qwerty[2][26] =
 {
@@ -19,8 +19,10 @@ static unsigned char	qwerty[2][26] =
     }
 };
 
-Input::Input()
+Input::Input(Shortcut *nsc)
 {
+    sc = nsc;
+    _disable = true;
     setDesktopResolution();
     Enable();
 }
@@ -44,22 +46,34 @@ bool Input::convertQA(const PKBDLLHOOKSTRUCT& p, bool& wasSent)
     return false;
 }
 
+void Input::handleShortcuts(const DWORD& code, const WPARAM& wp)
+{
+    qDebug() << "handleShortcuts up!";
+    if (code == VK_SHIFT)
+    {
+        if (wp == WM_KEYDOWN)
+        {
+            qDebug() << "sending SHIFT down";
+           // sc->addKey(Mod::Shift);
+        }
+        //else
+            //sc->addKey(-Mod::Shift);
+    }
+}
+
 LRESULT CALLBACK Input::KbProc(int code, WPARAM wp, LPARAM lp)
 {
     static bool wasSent = FALSE;
-    PKBDLLHOOKSTRUCT	p;
+    PKBDLLHOOKSTRUCT	p = (PKBDLLHOOKSTRUCT)lp;
 
-    if (Active[ALL]) { return CallNextHookEx(NULL, code, wp, lp); }
+    if (Active[ALL]) { qDebug() << "failed"; return CallNextHookEx(NULL, code, wp, lp); }
+    qDebug() << "lolmdr";
+    if (Active[SC] && (!Active[CONV] || wasSent))
+        handleShortcuts(p->vkCode, wp);
     /* Getting only "down" events */
     if ((wp == WM_KEYDOWN || wp == WM_SYSKEYDOWN) && code == HC_ACTION)
     {
-        if (wasSent == true)
-        {
-            wasSent = false;
-            return CallNextHookEx(NULL, code, wp, lp);
-        }
-        p = (PKBDLLHOOKSTRUCT)lp;
-
+        if (wasSent == true) { wasSent = false; return CallNextHookEx(NULL, code, wp, lp); }
         if (Active[CONV] && convertQA(p, wasSent))
             return 1;
     }
@@ -81,7 +95,6 @@ bool Input::ExtendScreen(POINT& pos)
     else if (pos.y >= screenSize.y)
         pos.y = 3;
 
-    //SetCursorPos(pmhs->pt.x, pmhs->pt.y);
     if (p.x != pos.x || p.y != pos.y)
         return true;
     return false;

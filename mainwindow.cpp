@@ -5,6 +5,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    sc = new Shortcut;
+    in = new Input(sc);
     disabled = false;
     setWindowTitle(tr("WinEx settings"));
     createActions();
@@ -16,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete sc;
+    delete in;
     delete ui;
     delete trayIcon;
     delete trayIconMenu;
@@ -105,11 +109,11 @@ void MainWindow::Disable(void)
 {
     if (!disabled) {
         disabled = true;
-        in.Disable();
+        in->Disable();
         trayIcon->setIcon(QIcon(":/images/resources/RedLuma.ico"));
     } else {
         disabled = false;
-        in.Enable();
+        in->Enable();
         trayIcon->setIcon(QIcon(":/images/resources/Luma.ico"));
     }
     setActive(EnActive::ALL, disabled);

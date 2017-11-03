@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     switch.cpp \
-    inputs.cpp
+    inputs.cpp \
+    shortcut.cpp
 
 HEADERS += \
         mainwindow.h \
     switch.h \
-    inputs.h
+    inputs.h \
+    shortcut.h
 
 FORMS += \
         mainwindow.ui

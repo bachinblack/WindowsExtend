@@ -20,7 +20,8 @@ public:
 
 private:
     void closeEvent(QCloseEvent *event);
-    Input   in;
+    Input       *in;
+    Shortcut    *sc;
 
     /* UI */
 private:

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Windows.h>
+#include "shortcut.h"
 
 enum EnActive
 {
@@ -8,15 +9,18 @@ enum EnActive
     CONV = 1,
     EXTS = 2,
     INVX = 3,
-    INVY = 4
+    INVY = 4,
+    SC = 5
 };
 
 class Input
 {
 public:
-    Input();
+    Input(Shortcut *nsc);
     ~Input();
+
 private:
+    Shortcut        *sc;
     HHOOK			_mHook;
     HHOOK			_kHook;
 
@@ -29,6 +33,7 @@ private:
 private:
     /* Hooks subfunctions - keyboard */
     static bool convertQA(const PKBDLLHOOKSTRUCT& p, bool& wasSent);
+    static void handleShortcuts(const DWORD& code, const WPARAM& wp);
 
     /* Hooks subfunctions - mouse */
     static bool ExtendScreen(POINT& pos);
