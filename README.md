@@ -11,5 +11,5 @@ List of implemented or yet to implement features:
 :heavy_check_mark: Azerty to Qwerty keyboard (only alpha keys are modified at the moment)  
 :heavy_check_mark: Invert X and Y mouse positions  
 :x: Create shortcuts (this feature is available in every good Linux desktop environments but not in windows?? too bad)  
-:x: Save preferences
-:x: Loopback mic sound (when you wear your headset but you would like to hear your voice)
+:x: Save preferences  
+:x: Loopback mic sound (when you wear your headset but you would like to hear your voice)  
