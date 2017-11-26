@@ -3,7 +3,11 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+#include <QAudio>
+#include <QAudioInput>
+#include <QModelIndex>
 #include "inputs.h"
+#include "audioloopback.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,8 +24,9 @@ public:
 
 private:
     void closeEvent(QCloseEvent *event);
-    Input       *in;
-    Shortcut    *sc;
+    Input           *in;
+    Shortcut        *sc;
+    AudioLoopBack   *audio;
 
     /* UI */
 private:
@@ -29,8 +34,6 @@ private:
     void createUIInt(void);
 
 public slots:
-    void clickInput(void);
-    void clickShortcut(void);
     void tryShow(const QSystemTrayIcon::ActivationReason &r);
 
     /* TrayIcon */
@@ -51,13 +54,23 @@ private:
     void showSC(void);
     void showMain(void);
 
-    /* Shortcuts */
+    /* Setup */
 private:
     void setupShortcut(void);
+    void setupAudio(void);
+
+private:
+    void removeRow(void);
+    void insertRow(const std::string& path, const std::string& sc);
+    void insertColumn(const std::string& s);
 
 private slots:
     void showWindow(void);
     void Disable(void);
+
+private slots:
+    void chVol(const int &nvol);
+    void chDev(const int& ndev);
 };
 
 #endif // MAINWINDOW_H

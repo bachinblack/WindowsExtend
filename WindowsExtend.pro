@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,13 +28,17 @@ SOURCES += \
         mainwindow.cpp \
     switch.cpp \
     inputs.cpp \
-    shortcut.cpp
+    shortcut.cpp \
+    widget.cpp
 
 HEADERS += \
         mainwindow.h \
     switch.h \
     inputs.h \
-    shortcut.h
+    shortcut.h \
+    treemodel.h \
+    treeitem.h \
+    widget.h
 
 FORMS += \
         mainwindow.ui

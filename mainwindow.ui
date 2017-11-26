@@ -40,9 +40,9 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="tabGen">
      <attribute name="title">
       <string>General</string>
      </attribute>
@@ -223,7 +223,7 @@
      <zorder>sInvY</zorder>
      <zorder>lInf</zorder>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="tabShortcut">
      <attribute name="title">
       <string>Shortcut</string>
      </attribute>
@@ -248,6 +248,9 @@
         <width>222</width>
         <height>221</height>
        </rect>
+      </property>
+      <property name="modelColumn">
+       <number>0</number>
       </property>
      </widget>
      <widget class="QPushButton" name="bAdd">
@@ -274,6 +277,114 @@
       </property>
       <property name="text">
        <string>Remove</string>
+      </property>
+     </widget>
+     <widget class="QTreeView" name="view">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>221</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectItems</enum>
+      </property>
+      <property name="horizontalScrollMode">
+       <enum>QAbstractItemView::ScrollPerPixel</enum>
+      </property>
+      <property name="animated">
+       <bool>false</bool>
+      </property>
+      <property name="allColumnsShowFocus">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabSound">
+     <attribute name="title">
+      <string>sound</string>
+     </attribute>
+     <widget class="QComboBox" name="cMic">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>80</y>
+        <width>180</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="Switch" name="sLoopBack" native="true">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>20</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lAct">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>20</y>
+        <width>111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Activate mic loopback</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lMic">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>60</y>
+        <width>21</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mic:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>140</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Volume:</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slVol">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>160</y>
+        <width>180</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="singleStep">
+       <number>1</number>
+      </property>
+      <property name="value">
+       <number>40</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </widget>

@@ -15,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     createUIInt();
     setupShortcut();
+    audio = new AudioLoopBack(ui->cMic, ui->slVol);
+    connect(ui->cMic, SIGNAL(activated(int)), SLOT(chDev(int)));
+    connect(ui->slVol, SIGNAL(valueChanged(int)), SLOT(chVol(int)));
 }
 
 MainWindow::~MainWindow()
@@ -102,6 +105,10 @@ void MainWindow::Disable(void)
     }
     setActive(EnActive::ALL, disabled);
 }
+
+void MainWindow::chVol(const int& vol) { audio->chVol(vol); }
+
+void MainWindow::chDev(const int &ndev) { audio->chDev(ndev); }
 
 /* Shortcuts */
 

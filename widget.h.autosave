@@ -1,0 +1,17 @@
+#ifndef IWIDGET_H
+#define IWIDGET_H
+
+
+class IWidget
+{
+public:
+    virtual IWidget();
+    virtual ~IWidget();
+    virtual bool start();
+    virtual void stop();
+
+private:
+    virtual void init();
+};
+
+#endif // IWIDGET_H
